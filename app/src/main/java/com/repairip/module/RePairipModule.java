@@ -3,10 +3,10 @@
  *
  * Licensed under the MIT License.
  *
- *   ⋆   ႔ ႔
- *     ᠸ^ ^ ⸝⸝
- *      |、˜〵
- *      じしˍ,)⁐̤ᐷ
+ * ⋆ ႔ ႔
+ * ᠸ^ ^ ⸝⸝
+ * |、˜〵
+ * じしˍ,)⁐̤ᐷ
  *
  * Fox Mode 🍺
  *
@@ -19,15 +19,16 @@ import io.github.libxposed.api.XposedModuleInterface.PackageLoadedParam;
 
 public class RePairipModule extends XposedModule {
 
-    @Override
-    public void onPackageLoaded(PackageLoadedParam param) {
-        super.onPackageLoaded(param);
+ @Override
+ public void onPackageLoaded(PackageLoadedParam param) {
+ super.onPackageLoaded(param);
 
-        // Skip self
-        if ("com.repairip.module".equals(param.getPackageName())) {
-            return;
-        }
+ // Skip self and related helper packages
+ String packageName = param.getPackageName();
+ if (packageName.startsWith("com.repairip")) {
+ return;
+ }
 
-        PairIpHooker.hook(this, param);
-    }
+ PairIpHooker.hook(this, param);
+ }
 }
