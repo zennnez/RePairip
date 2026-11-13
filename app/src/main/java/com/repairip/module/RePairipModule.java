@@ -14,14 +14,13 @@
  */
 package com.repairip.module;
 
-import androidx.annotation.NonNull;
 import io.github.libxposed.api.XposedModule;
 import io.github.libxposed.api.XposedModuleInterface.PackageLoadedParam;
 
 public class RePairipModule extends XposedModule {
 
     @Override
-    public void onPackageLoaded(@NonNull PackageLoadedParam param) {
+    public void onPackageLoaded(PackageLoadedParam param) {
         super.onPackageLoaded(param);
 
         // Skip self

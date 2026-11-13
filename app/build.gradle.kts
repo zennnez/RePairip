@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = "com.repairip.module"
     compileSdk = 35
+    buildToolsVersion = "34.0.0"
 
     defaultConfig {
         applicationId = "com.repairip.module"
@@ -47,4 +48,5 @@ dependencies {
 
     // DexKit — runtime DEX class/method finder (replaces static dexlib2 analysis)
     implementation(libs.dexkit)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
 }
