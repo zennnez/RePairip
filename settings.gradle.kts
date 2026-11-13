@@ -20,9 +20,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://api.xposed.info/") }   // Xposed API
     }
 }
 
 rootProject.name = "RePairip"
 include(":antik")
+include(":app")
 

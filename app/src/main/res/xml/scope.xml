@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    LSPosed module scope list.
+    Empty = applies to ALL packages (global scope).
+    Add package names here to restrict to specific apps.
+-->
+<resources>
+    <!-- scope is intentionally empty: hooks every loaded package -->
+</resources>

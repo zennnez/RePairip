@@ -4,12 +4,18 @@ dexlib2 = "2.5.2"
 reandroid-arsclib = "V1.3.8"
 guava = "33.2.1-jre"
 shadow = "8.3.5"
+agp = "8.7.3"
+libxposed-api = "102.0.0"
+dexkit = "2.0.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 dexlib2 = { group = "org.smali", name = "dexlib2", version.ref = "dexlib2" }
 reandroid-arsclib = { group = "com.github.REAndroid", name = "ARSCLib", version.ref = "reandroid-arsclib" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+libxposed-api = { group = "io.github.libxposed", name = "api", version.ref = "libxposed-api" }
+dexkit = { group = "org.luckypray", name = "dexkit", version.ref = "dexkit" }
 
 [plugins]
 shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+android-application = { id = "com.android.application", version.ref = "agp" }

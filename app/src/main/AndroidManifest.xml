@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:label="@string/app_name"
+        android:allowBackup="false"
+        android:supportsRtl="true"
+        android:description="@string/app_description">
+
+        <!-- Modern LibXposed API 102 module declaration -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Bypasses PairIP DRM protection at runtime using DexKit (LibXposed API 102)" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="102" />
+
+    </application>
+
+</manifest>
