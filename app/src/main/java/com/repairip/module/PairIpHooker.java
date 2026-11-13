@@ -15,8 +15,8 @@
  * Replaces the .jar static analysis / APK repacking with live runtime interception:
  * 1. SecurityBypassPatcher:
  * - SignatureCheck.verifySignatureMatches -> returns true
- * - LicenseClient / LicenseClientV3/LicenseClientV4.verifyIntegrity -> returns true / null
- * - LicenseClientV3.onActivityCreate -> stubbed (from TranslationRewriter)
+ * - LicenseClient / LicenseClientV3/V4/V5.verifyIntegrity -> returns true / null
+ * - LicenseClientV3/V4.onActivityCreate -> stubbed (from TranslationRewriter)
  * 2. LauncherPatcher & LaunchMethodPatcher:
  * - Hooks StartupLauncher.launch to allow VMRunner to decrypt strings/methods
  * 3. DexPatcher Junk-Class Discovery & pairip.json Dump:
@@ -64,7 +64,8 @@ public class PairIpHooker {
  private static final String CLS_SIGNATURE_CHECK = "com.pairip.SignatureCheck";
  private static final String CLS_LICENSE_CLIENT = "com.pairip.licensecheck.LicenseClient";
  private static final String CLS_LICENSE_CLIENT_V3 = "com.pairip.licensecheck3.LicenseClientV3";
- private static final String CLS_LICENSE_CLIENT_V4 = "com.pairip.licensecheck4.LicenseClientV4"; // New!
+ private static final String CLS_LICENSE_CLIENT_V4 = "com.pairip.licensecheck4.LicenseClientV4";
+ private static final String CLS_LICENSE_CLIENT_V5 = "com.pairip.licensecheck5.LicenseClientV5"; // New!
  private static final String CLS_PAIRIP_LOG = "com.pairip.PairipLog";
 
  static {
@@ -99,7 +100,7 @@ public class PairIpHooker {
  // ─── 1. Security Bypass (mirrors SecurityBypassPatcher) ───────────────────
 
  private static void hookSecurityClasses(XposedModule module, DexKitBridge bridge, ClassLoader cl) {
- String[] securityClasses = {CLS_SIGNATURE_CHECK, CLS_LICENSE_CLIENT, CLS_LICENSE_CLIENT_V3, CLS_LICENSE_CLIENT_V4};
+ String[] securityClasses = {CLS_SIGNATURE_CHECK, CLS_LICENSE_CLIENT, CLS_LICENSE_CLIENT_V3, CLS_LICENSE_CLIENT_V4, CLS_LICENSE_CLIENT_V5};
 
  for (String className : securityClasses) {
  try {
@@ -125,7 +126,7 @@ public class PairIpHooker {
  return 1;
  });
 
- } else if ("onActivityCreate".equals(name) && (CLS_LICENSE_CLIENT_V3.equals(className) || CLS_LICENSE_CLIENT_V4.equals(className))) {
+ } else if ("onActivityCreate".equals(name) && (CLS_LICENSE_CLIENT_V3.equals(className) || CLS_LICENSE_CLIENT_V4.equals(className) || CLS_LICENSE_CLIENT_V5.equals(className))) {
  Method m = md.getMethodInstance(cl);
  Log.i(TAG, "Stubbing onActivityCreate @ " + className);
  module.hook(m).intercept(chain -> null);
